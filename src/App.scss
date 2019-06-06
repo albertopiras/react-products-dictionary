@@ -1,0 +1,139 @@
+$base-color: #2196F3;
+
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 80px;
+}
+
+.App-header {
+    background-color: #222;
+    height: 200px;
+    padding: 20px;
+    color: white;
+}
+
+.App-title {
+    font-size: 1.5em;
+}
+
+.App-intro {
+    font-size: large;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* --------  Add Friend ---------- */
+
+#plusButton {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.modal-content h4 {
+    text-transform: uppercase;
+}
+
+.alert-danger {
+    color: #f21a1a;
+}
+
+#modalAddFriend h4 {
+    font-weight: bold;
+    padding: 0 .75rem;
+    /* border-bottom: 1px solid gray; */
+}
+
+.invalid-field {
+    border: 1px solid red !important;
+    outline-color: red !important;
+    outline-style: groove !important;
+}
+
+
+/* card */
+
+.card-header {
+    background: #e4e4e4;
+    text-align: center;
+    padding-top: 3em;
+    border-bottom: 1.5px solid #a0a0a094;
+}
+
+.card-header img {
+  height: 100px;
+  width: 100px;
+  margin-bottom: -50px;
+  padding: 3px;
+  background: white;
+  border-radius: 50%;
+  border: 1.5px solid #c7c7c7;
+  border-style: solid;
+}
+
+.card-body {
+    padding: 4rem 1rem 3rem 1rem;
+    font-family: 'roboto';
+}
+
+.card-body i{
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.card-info {
+    color: #656565;
+    margin-top: 0;
+}
+
+.card-user {
+  padding: 0;
+  margin: 0;
+  padding-bottom: 1em;
+  font-weight: bold;
+  color: #797979;
+  font-size: 1.5rem;
+}
+
+
+/* ------ */
+
+
+/* Modals */
+.modal-title{
+    text-transform: uppercase;
+}
+
+
+
+/* navbar */
+nav{
+    background-color: $base-color;
+}
+
+nav ul li>a.active {
+    background-color: rgba(0,0,0,0.1);
+}
+
+
+
+
+
+
+
