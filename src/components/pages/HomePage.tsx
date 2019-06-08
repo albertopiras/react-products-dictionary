@@ -2,6 +2,7 @@
 import React, { Component, Fragment } from 'react';
 import './HomePage.scss';
 import { ProductsConsumer } from 'providers/ProductsProvider';
+import ProductsList from '../ProductsList';
 
 class HomePage extends Component {
 
@@ -17,8 +18,7 @@ class HomePage extends Component {
                     return (
                         <Fragment>
                             <div className="home-page-title">{this.state.pageTitle}</div>
-                            <p>Pagina prodotti</p>
-                            Products:{context.productList.length}
+                            <ProductsList productsList={context.productList}></ProductsList>
                         </Fragment>
                     )
                 }}

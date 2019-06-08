@@ -4,11 +4,13 @@ import axios from 'axios';
 interface AppState {
     productList: Product[],
     getProduct(id: number): Product | null;
+    removeProduct(id:number):void;
 };
 
 const initialState: AppState = {
     productList: [] as Product[],
     getProduct: (id: number) => null,
+    removeProduct: (id:number) => {}
 };
 
 export const ProductsContext = React.createContext(initialState);
@@ -26,6 +28,10 @@ class ProductsProvider extends Component {
             const product = this.state.productList.find((product: Product) => product.id === id);
             return product ? product : null;
         },
+       removeProduct: (id: number) => {
+            console.log('context remove product');
+            this.setState({productList: this.state.productList.filter((product:Product)=>product.id !== id)});
+        }
     } as AppState;
 
     /**retrieves data from server */

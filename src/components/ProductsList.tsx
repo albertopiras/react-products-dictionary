@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import ProductCard from './ProductCard';
 
 interface IProductsListParams {
   productsList: Product[];
-  onRemoveItem: (id: number) => void
+  // onRemoveItem: (id: number) => void
 }
 
 class ProductsList extends Component<IProductsListParams> {
@@ -10,16 +11,13 @@ class ProductsList extends Component<IProductsListParams> {
   // <Link to=”/”>Home</Link>
   render() {
     return (
-      <ul id="productsList" className="collection">
-        {this.props.productsList.map((el, i) =>
-          <li className="collection-item avatar" key={i}>
-            <i className="material-icons circle green">insert_chart</i>
-              <span>{el.name}</span>
-              <span>{el.color}</span>
-            <a href="#!" onClick={() => this.props.onRemoveItem(el.id)} className="secondary-content"><i className="material-icons">delete</i></a>
-          </li >
-        )}
-      </ul>
+        <div className="row">
+          {this.props.productsList.map((el, i) =>
+            <div className="col s12 m4">
+              <ProductCard product={el}></ProductCard>
+            </div>
+          )}
+        </div>
     );
   }
 }
