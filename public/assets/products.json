@@ -11,14 +11,14 @@
             "id": 102,
             "name": "Samsung Galaxy S8",
             "brand": "Samsung",
-            "color": "hex1",
+            "color": "hex2",
             "price": 569
         },
         {
             "id": 103,
             "name": "Huawei P9",
             "brand": "Huawei",
-            "color": "hex1",
+            "color": "hex3",
             "price": 272
         }
     ]

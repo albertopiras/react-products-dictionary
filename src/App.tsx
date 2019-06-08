@@ -7,6 +7,7 @@ import { Route, NavLink, BrowserRouter } from 'react-router-dom';
 import HomePage from 'components/pages/HomePage';
 import ProductsProvider from 'providers/ProductsProvider';
 import DictionariesPage from 'components/pages/DictionariesPage';
+import ColorsProvider from './providers/ColorProvider';
 
 const history = createBrowserHistory();
 class App extends PureComponent {
@@ -17,6 +18,7 @@ class App extends PureComponent {
   render() {
 
     return (
+      <ColorsProvider>
       <ProductsProvider>
         <BrowserRouter>
           <nav>
@@ -32,6 +34,7 @@ class App extends PureComponent {
           <Route path="/dictionaries" component={DictionariesPage} />
         </BrowserRouter>
       </ProductsProvider>
+      </ColorsProvider>
     );
   }
 }
