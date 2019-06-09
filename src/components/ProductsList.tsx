@@ -14,7 +14,7 @@ class ProductsList extends Component<IProductsListParams> {
     return (
         <div className="row">
           {this.props.productsList.map((el, i) =>
-            <div className="col s12 m4">
+            <div className="col s12 m4" key={i}>
               <ProductCard product={el}></ProductCard>
             </div>
           )}

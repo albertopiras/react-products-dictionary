@@ -23,11 +23,9 @@ class ProductCard extends Component<IProductCardParams> {
                                 <img src="assets/img/iphone.jpg" />
                                 <span className="card-title">{product.name}</span>
                             </div>
-                            <div className="card-content">
-                                <p>{product.price}</p>
-                            </div>
-                            <div className="card-action">
-                                Color: {context.getColorDescription(product.color)}
+                            <div className="card-content" style={{ backgroundColor: product.color }}>
+                                <div>{context.getColorDescription(product.color)}</div>
+                                <div>CHF&nbsp;{product.price}</div>
                             </div>
                         </div>
                     )

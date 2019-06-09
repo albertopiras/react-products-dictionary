@@ -7,14 +7,28 @@ interface ColorState {
     getColorList: any;
 };
 
+
 const colors = {
-    hex1: 'Grigio',
-    hex2: 'Red',
-    hex3: 'Green'
+    "#FFFFFF":"WHITE",	
+    "#C0C0C0":"SILVER",	
+    "#808080":"GRAY",	
+    "#000000":"BLACK",	
+    "#FF0000":"RED",	
+    "#800000":"MAROON",	
+    "#FFFF00":"YELLOW",	
+    "#808000":"OLIVE",	
+    "#00FF00":"LIME",	
+    "#008000":"GREEN",	
+    "#00FFFF":"AQUA",	
+    "#008080":"TEAL",	
+    "#0000FF":"BLUE",	
+    "#000080":"NAVY",	
+   "#FF00FF": "FUCHSIA",	
+    "#800080":"PURPLE"
 };
 
 const initialState: ColorState = {
-    colors : colors,
+    colors: colors,
     getColorDescription: (hex: string) => {
         console.log('context get Color Description');
         const color = (colors as any)[hex];
@@ -24,7 +38,7 @@ const initialState: ColorState = {
     getColorList: () => {
         return Object.keys(colors)
             .map((item) => {
-                return { value: item, label: (colors as any)[item]}
+                return { value: item, label: (colors as any)[item] }
             });
     }
 };

@@ -3,6 +3,8 @@ import React, { Component, Fragment } from 'react';
 import './HomePage.scss';
 import { ProductsConsumer } from 'providers/ProductsProvider';
 import ProductsList from '../ProductsList';
+import DictionariesProvider from '../../providers/DictionaryProvider';
+import DictionarySelection from '../DictionarySelection';
 
 class HomePage extends Component {
 
@@ -13,16 +15,19 @@ class HomePage extends Component {
 
     render() {
         return (
-            <ProductsConsumer>
-                {(context) => {
-                    return (
-                        <Fragment>
-                            <div className="home-page-title">{this.state.pageTitle}</div>
-                            <ProductsList productsList={context.productList}></ProductsList>
-                        </Fragment>
-                    )
-                }}
-            </ProductsConsumer>
+            <DictionariesProvider>
+                <ProductsConsumer>
+                    {(context) => {
+                        return (
+                            <Fragment>
+                                <div className="home-page-title">{this.state.pageTitle}</div>
+                                <DictionarySelection></DictionarySelection>
+                                <ProductsList productsList={context.productList}></ProductsList>
+                            </Fragment>
+                        )
+                    }}
+                </ProductsConsumer>
+            </DictionariesProvider>
         )
 
     }

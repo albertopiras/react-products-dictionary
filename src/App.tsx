@@ -8,6 +8,7 @@ import HomePage from 'components/pages/HomePage';
 import ProductsProvider from 'providers/ProductsProvider';
 import DictionariesPage from 'components/pages/DictionariesPage';
 import ColorsProvider from './providers/ColorProvider';
+import DictionarysProvider from './providers/DictionaryProvider';
 
 const history = createBrowserHistory();
 class App extends PureComponent {
@@ -19,21 +20,23 @@ class App extends PureComponent {
 
     return (
       <ColorsProvider>
-      <ProductsProvider>
-        <BrowserRouter>
-          <nav>
-            <div className="nav-wrapper">
-              <a href="#!" className="brand-logo center"><img src={logo} className="app-logo" alt="logo" /></a>
-              <ul className="left">
-                <li><NavLink exact={true} activeClassName='active' to='/'>Home</NavLink></li>
-                <li><NavLink exact={true} activeClassName='active' to='/dictionaries'>Dictionaries</NavLink></li>
-              </ul>
+        <ProductsProvider>
+          <BrowserRouter>
+            <nav>
+              <div className="nav-wrapper">
+                <a href="#!" className="brand-logo center"><img src={logo} className="app-logo" alt="logo" /></a>
+                <ul className="left">
+                  <li><NavLink exact={true} activeClassName='active' to='/'>Home</NavLink></li>
+                  <li><NavLink exact={true} activeClassName='active' to='/dictionaries'>Dictionaries</NavLink></li>
+                </ul>
+              </div>
+            </nav>
+            <div className ="container">
+              <Route exact path="/" component={HomePage} />
+              <Route path="/dictionaries" component={DictionariesPage} />
             </div>
-          </nav>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/dictionaries" component={DictionariesPage} />
-        </BrowserRouter>
-      </ProductsProvider>
+          </BrowserRouter>
+        </ProductsProvider>
       </ColorsProvider>
     );
   }
