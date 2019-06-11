@@ -38,7 +38,18 @@ nav ul li>a.active {
     text-transform: uppercase;
 }
 
+.text-center{
+    text-align: center
+};
 
+button.MuiButton-root{
+    border-radius: 0;
+}
+
+
+button.MuiButton-root:focus{
+    background: #d5d5d5;
+}
 
 // other 
 

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { ColorDictionariesConsumer } from '../providers/ColorDictionariesProvider';
+import { Grid, Button } from '@material-ui/core';
+import './DictionarySelection.scss';
 
 class DictionarySelection extends Component {
 
@@ -7,18 +9,18 @@ class DictionarySelection extends Component {
     return (
       <ColorDictionariesConsumer>
         {(context) => {
-          
-          function handleClick(newDictionary: string){
+
+          function handleClick(newDictionary: string) {
             context.activateDictionary(newDictionary);
           }
           return (
-            <div>
+            <Grid className="text-center">
               {context.getDictionaries().map((el: any, i: number) =>
-                <button key={i} onClick={()=>handleClick(el.dictionaryName)}>
+                <Button key={i} onClick={() => handleClick(el.dictionaryName)} variant="contained" className={(el.dictionaryName === context.currentDictionary)?'dictionary-active': 'dictionary-default'} >
                   {el.dictionaryName}
-                </button>
+                </Button>
               )}
-            </div>
+            </Grid>
           )
         }}
       </ColorDictionariesConsumer>
