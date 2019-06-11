@@ -3,7 +3,6 @@ import React, { Component, Fragment } from 'react';
 import './HomePage.scss';
 import { ProductsConsumer } from 'providers/ProductsProvider';
 import ProductsList from '../ProductsList';
-import DictionariesProvider from '../../providers/ColorDictionariesProvider';
 import DictionarySelection from '../DictionarySelection';
 
 class HomePage extends Component {

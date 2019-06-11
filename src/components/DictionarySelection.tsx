@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import ProductCard from './ProductCard';
-import { Product } from '../models/Product';
 import { ColorDictionariesConsumer } from '../providers/ColorDictionariesProvider';
-import Fragment from 'react';
 
 class DictionarySelection extends Component {
-
-
 
   render() {
     return (

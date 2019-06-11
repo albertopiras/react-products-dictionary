@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import './App.scss';
-import { createBrowserHistory } from "history";
 import logo from './logo.svg';
 
 import { Route, NavLink, BrowserRouter } from 'react-router-dom';
@@ -9,7 +8,7 @@ import ProductsProvider from 'providers/ProductsProvider';
 import DictionariesPage from 'components/pages/DictionariesPage';
 import ColorDictionariesProvider from './providers/ColorDictionariesProvider';
 
-const history = createBrowserHistory();
+// const history = createBrowserHistory();
 class App extends PureComponent {
 
   componentDidMount = () => {

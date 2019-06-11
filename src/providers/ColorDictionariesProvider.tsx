@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 
 interface DictionaryState {
     // colors
-    colors: any;
-    currentDictionary:string | null;
     getColorDescription(hex: string): string | null;
     getColorMutation(hex: string): string;
-    getCurrentDictionaryName(): string | null;
     getColorList: any;
     // dictionary
+    // getCurrentDictionary(): Dictionary | null;
+    currentDictionary: string | null;
     getDictionaries: any;
+    dictionaries: Dictionary[];
     activateDictionary: (newDictionary: string) => void;
 };
 
@@ -54,28 +54,8 @@ const dictionaries = [
     }
 ]
 
-const initialState: DictionaryState = {
-    currentDictionary: null,
-    getDictionaries: () => dictionaries,
-    activateDictionary: (newDictionary: string) => { },
-    colors: colors,
-    getCurrentDictionaryName: () => null,
-    getColorDescription: (hex: string) => {
-        console.log('context get Color Description for ',hex);
-        const color = (colors as any)[hex];
-        return color ? color : null;
-    },
-    // getColorDescription: (id: number) => null,
-    getColorList: () => {   
-        return Object.keys(colors)
-            .map((item) => {
-                return { value: item, label: (colors as any)[item] }
-            });
-    },
-    getColorMutation: (param: string) => ''
-};
 
-export const ColorDictionariesContext = React.createContext(initialState);
+export const ColorDictionariesContext = React.createContext({} as DictionaryState);
 
 // Create an exportable consumer that can be injected into components
 export const ColorDictionariesConsumer = ColorDictionariesContext.Consumer
@@ -84,12 +64,22 @@ export const ColorDictionariesConsumer = ColorDictionariesContext.Consumer
 class ColorDictionariesProvider extends Component {
 
     state = {
-        ...initialState, activateDictionary: (newDictionary: string) => {
-            console.log("context activate dictionary");
-            this.setState({ currentDictionary: this.state.currentDictionary!=newDictionary? newDictionary : null })
+        currentDictionary: null,
+        dictionaries:dictionaries,
+        getDictionaries: () => dictionaries,
+        getColorDescription: (hex: string) => {
+            const color = (colors as any)[hex];
+            return color ? color : null;
         },
-        getCurrentDictionaryName: () => {
-            return this.state.currentDictionary;
+        getColorList: () => {
+            return Object.keys(colors)
+                .map((item) => {
+                    return { value: item, label: (colors as any)[item] }
+                });
+        },
+        activateDictionary: (newDictionary: string) => {
+            console.log("context activate dictionary");
+            this.setState({ currentDictionary: this.state.currentDictionary !== newDictionary ? newDictionary : null })
         },
         getColorMutation: (hexColor: string): string => {
             const currentDictionaryObj = this.getActiveDictionaryObj();
@@ -97,7 +87,6 @@ class ColorDictionariesProvider extends Component {
             if (currentDictionaryObj && currentDictionaryObj.mutations[hexColor]) {
                 response = currentDictionaryObj.mutations[hexColor];
             }
-            console.log('from ', hexColor, 'to ', response);
             return response;
         }
     };
