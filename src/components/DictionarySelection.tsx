@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ProductCard from './ProductCard';
 import { Product } from '../models/Product';
-import { DictionariesConsumer } from '../providers/DictionaryProvider';
+import { ColorDictionariesConsumer } from '../providers/ColorDictionariesProvider';
 import Fragment from 'react';
 
 class DictionarySelection extends Component {
@@ -10,7 +10,7 @@ class DictionarySelection extends Component {
 
   render() {
     return (
-      <DictionariesConsumer>
+      <ColorDictionariesConsumer>
         {(context) => {
           
           function handleClick(newDictionary: string){
@@ -26,7 +26,7 @@ class DictionarySelection extends Component {
             </div>
           )
         }}
-      </DictionariesConsumer>
+      </ColorDictionariesConsumer>
     );
   }
 }
