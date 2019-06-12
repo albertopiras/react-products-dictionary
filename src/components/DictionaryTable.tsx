@@ -9,6 +9,8 @@ interface IDictionaryTableParams {
     colors: any[];
     onAddItem: (dictionaryName: string, from: string, to: string) => Promise<any>;
     onUpdateItem: (dictionaryName: string, itemkey: string, from: string, to: string) => Promise<any>;
+    onRemoveItem: (dictionaryName: string, itemkey: string) => Promise<any>;
+
 }
 
 class DictionaryTable extends Component<IDictionaryTableParams> {
@@ -27,6 +29,9 @@ class DictionaryTable extends Component<IDictionaryTableParams> {
         return this.props.onUpdateItem(dictionaryName, itemKey, from, to);
     }
 
+    removeItem(dictionaryName: string, itemKey: string) {
+        return this.props.onRemoveItem(dictionaryName, itemKey);
+    }
     render() {
 
         return (
@@ -41,21 +46,10 @@ class DictionaryTable extends Component<IDictionaryTableParams> {
                         }
                     })}
                     editable={{
-                        onRowAdd: newData => {
-                            return this.addDictionaryItem(this.props.dictionary.dictionaryName, newData.from, newData.to)
-                        },
-                        onRowUpdate: (newData, oldData) => {
-                            return this.updateItem(this.props.dictionary.dictionaryName,oldData.from, newData.from, newData.to)
-                        },
+                        onRowAdd: newData => this.addDictionaryItem(this.props.dictionary.dictionaryName, newData.from, newData.to),
+                        onRowUpdate: (newData, oldData) => this.updateItem(this.props.dictionary.dictionaryName, oldData.from, newData.from, newData.to),
                         onRowDelete: oldData =>
-                            new Promise(resolve => {
-                                setTimeout(() => {
-                                    resolve();
-                                    // const data = [...this.state.data];
-                                    // data.splice(data.indexOf(oldData), 1);
-                                    // this.setState({ ...this.state, data });
-                                }, 600);
-                            }),
+                            this.removeItem(this.props.dictionary.dictionaryName, oldData.from)
                     }}
                 />
             </Fragment>

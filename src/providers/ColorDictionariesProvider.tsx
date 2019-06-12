@@ -15,6 +15,7 @@ interface DictionaryState {
     activateDictionary: (newDictionary: string) => void;
     addDictionaryItem: (dictionaryName: string, from: string, to: string) => Promise<any>;
     updateDictionaryItem: (dictionaryName: string, itemkey: string, from: string, to: string) => Promise<any>;
+    removeDictionaryItem:(dicitonaryName:string, itemkey:string)=>Promise<any>
 };
 
 const colors = {
@@ -89,7 +90,7 @@ class ColorDictionariesProvider extends Component {
                     if (dictionary.mutations[from]) reject(new Message('item already present', true));
                     dictionary.mutations[from] = to;
                     this.setState({ dictionaries: this.state.dictionaries });
-                    resolve(new Message('item added'));
+                    resolve(new Message('item successfully added'));
                 }, 600);
             });
         },
@@ -102,7 +103,20 @@ class ColorDictionariesProvider extends Component {
                     delete dictionary.mutations[itemkey];
                     dictionary.mutations[from] = to;
                     this.setState({ dictionaries: this.state.dictionaries });
-                    resolve(new Message('item updted'));
+                    resolve(new Message('item successfully updted'));
+                }, 600);
+            })
+
+        },
+        removeDictionaryItem: (dictionaryName: string, itemkey: string) => {
+            console.log('context - removing dictionary item ...');
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    let dictionary = this.state.dictionaries.find((dictionary: Dictionary) => dictionary.dictionaryName === dictionaryName) as Dictionary;
+                    if (!dictionary) reject(new Message('no dictionary found'));
+                    delete dictionary.mutations[itemkey];
+                    this.setState({ dictionaries: this.state.dictionaries });
+                    resolve(new Message('item successfully removed'));
                 }, 600);
             })
 

@@ -18,10 +18,9 @@ class DictionaryList extends Component<IDictionaryListParams> {
 
               {Object.keys(context.getDictionaries()).map((el: any, i: number) =>
                 <div className="col s12 m4" key={i}>
-                  <DictionaryTable dictionary={context.getDictionaries()[el]} colors={context.getColorList()} onAddItem={context.addDictionaryItem} onUpdateItem={context.updateDictionaryItem}></DictionaryTable>
+                  <DictionaryTable dictionary={context.getDictionaries()[el]} colors={context.getColorList()} onAddItem={context.addDictionaryItem} onUpdateItem={context.updateDictionaryItem} onRemoveItem={context.removeDictionaryItem}></DictionaryTable>
                 </div>
               )}
-
 
             </div>
           )
