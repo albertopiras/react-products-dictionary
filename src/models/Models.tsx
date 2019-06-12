@@ -10,3 +10,15 @@ export interface Dictionary {
     dictionaryName: string;
     mutations: any
 }
+
+export interface Message{
+    content:string;
+    error?:boolean;
+}
+
+export class Message implements Message{
+    constructor(newMessage:string, error?:boolean){
+        this.content = newMessage;
+        this.error = error;
+    }
+}
