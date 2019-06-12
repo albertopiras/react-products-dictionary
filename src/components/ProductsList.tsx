@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ProductCard from './ProductCard';
-import { Product } from '../models/Product';
+import { Product } from 'models/Models';
 
 interface IProductsListParams {
   productsList: Product[];

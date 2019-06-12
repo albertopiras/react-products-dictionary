@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Dictionary } from 'models/Models';
 
 interface DictionaryState {
     // colors
@@ -31,11 +32,6 @@ const colors = {
     "#FF00FF": "FUCHSIA",
     "#800080": "PURPLE"
 };
-
-interface Dictionary {
-    dictionaryName: string;
-    mutations: any
-}
 
 const dictionaries = [
     {

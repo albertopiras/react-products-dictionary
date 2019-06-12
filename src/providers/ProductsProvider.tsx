@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import { Product } from '../models/Product';
+import { Product } from '../models/Models';
 
 interface AppState {
     productList: Product[],

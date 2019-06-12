@@ -5,3 +5,8 @@ export interface Product{
     color: string,
     price: number
 }
+
+export interface Dictionary {
+    dictionaryName: string;
+    mutations: any
+}

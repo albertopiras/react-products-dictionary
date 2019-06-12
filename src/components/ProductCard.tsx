@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ProductCard.scss';
-import { Product } from '../models/Product';
+import { Product } from '../models/Models';
 import { ColorDictionariesConsumer } from 'providers/ColorDictionariesProvider';
 
 interface IProductCardParams {
