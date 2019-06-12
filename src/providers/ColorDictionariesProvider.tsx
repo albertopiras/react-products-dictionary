@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Dictionary, Message } from 'models/Models';
-import { reject } from 'q';
 
 interface DictionaryState {
     // colors
@@ -12,7 +11,7 @@ interface DictionaryState {
     currentDictionary: string | null;
     getDictionaries: any;
     dictionaries: Dictionary[];
-    createDictionary: (newDictionary: string) => void;
+    createDictionary: (newDictionary: string) => Promise<any>;
     // mutations
     activateDictionary: (newDictionary: string) => void;
     addDictionaryItem: (dictionaryName: string, from: string, to: string) => Promise<any>;
@@ -84,24 +83,24 @@ class ColorDictionariesProvider extends Component {
             this.setState({ currentDictionary: this.state.currentDictionary !== newDictionary ? newDictionary : null })
         },
         createDictionary:(dictionaryName:string)=>{
-            return new Promise(resolve => {
-                setTimeout(() => {
+            return new Promise((resolve,reject) => {
                     let dictionary = this.state.dictionaries.find((dictionary: Dictionary) => dictionary.dictionaryName === dictionaryName) as Dictionary;
-                    if (dictionary) reject(new Message('this dictionary already exists'));
+                    if (dictionary){
+                        return reject('this dictionary already exists');
+                    } 
                     const newDictionary:Dictionary = {dictionaryName: dictionaryName, mutations:{}};
                     this.state.dictionaries.push(newDictionary);
                     this.setState({ dictionaries: this.state.dictionaries });
                     resolve(new Message('Dictionary successfully added'));
-                }, 600);
             });
         },
         addDictionaryItem: (dictionaryName: string, from: string, to: string) => {
             console.log('context - adding dictionary mutation ...');
-            return new Promise(resolve => {
+            return new Promise((resolve,reject) => {
                 setTimeout(() => {
                     let dictionary = this.state.dictionaries.find((dictionary: Dictionary) => dictionary.dictionaryName === dictionaryName) as Dictionary;
-                    if (!dictionary) reject(new Message('no dictionary found'));
-                    if (dictionary.mutations[from]) reject(new Message('item already present', true));
+                    if (!dictionary) return reject(new Message('no dictionary found'));
+                    if (dictionary.mutations[from]) return reject(new Message('item already present', true));
                     dictionary.mutations[from] = to;
                     this.setState({ dictionaries: this.state.dictionaries });
                     resolve(new Message('item successfully added'));
@@ -110,10 +109,10 @@ class ColorDictionariesProvider extends Component {
         },
         updateDictionaryItem: (dictionaryName: string, itemkey: string, from: string, to: string) => {
             console.log('context - updating dictionary mutation ...');
-            return new Promise(resolve => {
+            return new Promise((resolve,reject) => {
                 setTimeout(() => {
                     let dictionary = this.state.dictionaries.find((dictionary: Dictionary) => dictionary.dictionaryName === dictionaryName) as Dictionary;
-                    if (!dictionary) reject(new Message('no dictionary found'));
+                    if (!dictionary) return reject(new Message('no dictionary found'));
                     delete dictionary.mutations[itemkey];
                     dictionary.mutations[from] = to;
                     this.setState({ dictionaries: this.state.dictionaries });
@@ -124,10 +123,10 @@ class ColorDictionariesProvider extends Component {
         },
         removeDictionaryItem: (dictionaryName: string, itemkey: string) => {
             console.log('context - removing dictionary item ...');
-            return new Promise(resolve => {
+            return new Promise((resolve,reject) => {
                 setTimeout(() => {
                     let dictionary = this.state.dictionaries.find((dictionary: Dictionary) => dictionary.dictionaryName === dictionaryName) as Dictionary;
-                    if (!dictionary) reject(new Message('no dictionary found'));
+                    if (!dictionary) return reject(new Message('no dictionary found'));
                     delete dictionary.mutations[itemkey];
                     this.setState({ dictionaries: this.state.dictionaries });
                     resolve(new Message('item successfully removed'));

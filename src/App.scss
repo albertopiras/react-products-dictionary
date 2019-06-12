@@ -57,7 +57,7 @@ button.MuiButton-root:focus{
 
 /* --------  Add  ---------- */
 
-.MuiButtonBase-root.primary-btn, .primary-btn, button.MuiButton-root.primary-btn:focus{
+.MuiButtonBase-root.primary-btn, .primary-btn, button.MuiButton-root.primary-btn:focus, button.MuiFab-primary:hover{
     background: $base-color;
     color: #ffffff;
 }
@@ -129,4 +129,12 @@ button.MuiButton-root:focus{
   font-weight: bold;
   color: #797979;
   font-size: 1.5rem;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]){
+    border-bottom: none;
+    box-shadow: none;
+}
+input[type=text]:not(.browser-default){
+    border: none;
 }

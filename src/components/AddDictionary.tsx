@@ -1,21 +1,24 @@
 import React, { Component, Fragment } from 'react';
 import { ColorDictionariesConsumer } from 'providers/ColorDictionariesProvider';
-import { Fab, Icon } from '@material-ui/core';
+import { Fab, Icon, TextField } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import BaseDialog from './dialog/BaseDialog';
 import './AddDictionary.scss';
 
 interface IAddDictionaryParams {
-  onAddDictionary: (newDictionaryName: string) => void
+  onAddDictionary: (newDictionaryName: string) => Promise<any>
 }
 
 interface IComponentState {
   open: boolean;
+  newDictionaryName: string;
 }
 
-class AddDictionary extends Component<IAddDictionaryParams, IComponentState> {
+class AddDictionary extends React.Component<IAddDictionaryParams, IComponentState> {
 
   state: IComponentState = {
     open: false,
+    newDictionaryName: ''
   }
 
   handleClickOpen = () => {
@@ -26,6 +29,17 @@ class AddDictionary extends Component<IAddDictionaryParams, IComponentState> {
     this.setState({ open: false });
   };
 
+  handleOnChage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ newDictionaryName: event.target.value });
+  }
+
+  handleOnSubmit() {
+    this.props.onAddDictionary(this.state.newDictionaryName).then((response)=>{
+      console.log('on success');
+    }, (err)=>{
+      console.log('on error');
+    })
+  }
   render() {
     return (
       <ColorDictionariesConsumer>
@@ -37,14 +51,23 @@ class AddDictionary extends Component<IAddDictionaryParams, IComponentState> {
                 <Icon>add_icon</Icon>
               </Fab>
               <BaseDialog title='add new dictionary' open={this.state.open} onClose={this.handleClose} >
-                <div className="row no-margin">
-                  contenuto
+                <div className="row">
+                  <TextField
+                    label="Dictionary Name"
+                    value={this.state.newDictionaryName}
+                    onChange={this.handleOnChage}
+                    margin="normal"
+                    variant="outlined"
+                  />
+                </div>
+                <div className="row">
+                  <Button variant="contained" onClick={()=>this.handleOnSubmit()} className="primary-btn no-margin">Add</Button>
                 </div>
               </BaseDialog>
             </Fragment>
 
-      )
-    }}
+          )
+        }}
       </ColorDictionariesConsumer>
     );
   }
