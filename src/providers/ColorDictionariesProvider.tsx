@@ -12,6 +12,8 @@ interface DictionaryState {
     currentDictionary: string | null;
     getDictionaries: any;
     dictionaries: Dictionary[];
+    createDictionary: (newDictionary: string) => void;
+    // mutations
     activateDictionary: (newDictionary: string) => void;
     addDictionaryItem: (dictionaryName: string, from: string, to: string) => Promise<any>;
     updateDictionaryItem: (dictionaryName: string, itemkey: string, from: string, to: string) => Promise<any>;
@@ -80,6 +82,18 @@ class ColorDictionariesProvider extends Component {
         activateDictionary: (newDictionary: string) => {
             console.log("context - activate dictionary");
             this.setState({ currentDictionary: this.state.currentDictionary !== newDictionary ? newDictionary : null })
+        },
+        createDictionary:(dictionaryName:string)=>{
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    let dictionary = this.state.dictionaries.find((dictionary: Dictionary) => dictionary.dictionaryName === dictionaryName) as Dictionary;
+                    if (dictionary) reject(new Message('this dictionary already exists'));
+                    const newDictionary:Dictionary = {dictionaryName: dictionaryName, mutations:{}};
+                    this.state.dictionaries.push(newDictionary);
+                    this.setState({ dictionaries: this.state.dictionaries });
+                    resolve(new Message('Dictionary successfully added'));
+                }, 600);
+            });
         },
         addDictionaryItem: (dictionaryName: string, from: string, to: string) => {
             console.log('context - adding dictionary mutation ...');

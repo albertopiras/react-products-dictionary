@@ -51,14 +51,15 @@ button.MuiButton-root:focus{
     background: #d5d5d5;
 }
 
+
+
 // other 
 
 /* --------  Add  ---------- */
 
-#plusButton {
-    position: fixed;
-    right: 1rem;
-    bottom: 1rem;
+.MuiButtonBase-root.primary-btn, .primary-btn, button.MuiButton-root.primary-btn:focus{
+    background: $base-color;
+    color: #ffffff;
 }
 
 .no-margin {
@@ -129,9 +130,3 @@ button.MuiButton-root:focus{
   color: #797979;
   font-size: 1.5rem;
 }
-
-
-
-
-
-

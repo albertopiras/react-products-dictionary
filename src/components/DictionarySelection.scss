@@ -1,11 +1,4 @@
-@import "../App.scss";
 
-
-button.MuiButton-root.dictionary-active{
-    background: $base-color;
-    color: #ffffff;
-}
-
-button.MuiButton-root.MuiButton-root{
+button.MuiButton-root{
     margin: 0 1rem;
 }

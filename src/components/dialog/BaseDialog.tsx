@@ -4,33 +4,32 @@ import Dialog from '@material-ui/core/Dialog';
 import { DialogContent } from '@material-ui/core';
 
 interface IBaseDialogProps {
-  selectedValue?: string;
-  title:string;
+  title: string;
   open: boolean;
-  onClose(param:any):void;
+  onClose(): void;
 }
 
 class BaseDialog extends Component<IBaseDialogProps> {
 
-   handleClose =()=> {
-    this.props.onClose(this.props.selectedValue);
+  handleClose = () => {
+    this.props.onClose();
   }
 
-  handleListItemClick = (value:any)=> {
-    this.props.onClose(value);
+  handleListItemClick = (value: any) => {
+    this.props.onClose();
   }
 
-  render(){
-    const { onClose, selectedValue, ...other } = this.props;
+  render() {
+    const { onClose, title, ...other } = this.props;
 
     return (
       <Dialog onClose={this.handleClose} {...other}>
-      <DialogTitle className='modal-title'>{this.props.title}</DialogTitle>
-      <DialogContent>
+        <DialogTitle className='modal-title'>{title}</DialogTitle>
+        <DialogContent>
           {this.props.children}
         </DialogContent>
       </Dialog>
-  );
+    );
   }
 }
 

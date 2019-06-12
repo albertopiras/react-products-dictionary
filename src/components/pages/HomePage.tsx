@@ -5,8 +5,11 @@ import { ProductsConsumer } from 'providers/ProductsProvider';
 import ProductsList from '../ProductsList';
 import DictionarySelection from '../DictionarySelection';
 
-class HomePage extends Component {
+interface IHomeState{
+    pageTitle:string;
+}
 
+class HomePage extends Component<object,IHomeState> {
 
     state = {
         pageTitle: 'Product Store Backoffice'

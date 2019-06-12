@@ -1,6 +1,7 @@
 import React, { Component, Fragment} from 'react';
 import { ColorDictionariesConsumer } from 'providers/ColorDictionariesProvider';
 import DictionaryList from 'components/DictionaryList';
+import AddDictionary from 'components/AddDictionary';
 
 class DictionariesPage extends Component {
 
@@ -15,6 +16,7 @@ class DictionariesPage extends Component {
                     <Fragment>
                         <div className="home-page-title">{this.state.pageTitle}</div>
                         <DictionaryList dictionariesList={context.dictionaries}></DictionaryList>
+                        <AddDictionary onAddDictionary={context.createDictionary}></AddDictionary>
                     </Fragment>
                 )
             }}
