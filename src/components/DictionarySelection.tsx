@@ -14,7 +14,7 @@ class DictionarySelection extends Component {
             context.activateDictionary(newDictionary);
           }
           return (
-            <Grid className="text-center">
+            <Grid className="text-center dictionary-list-selection">
               {context.getDictionaries().map((el: any, i: number) =>
                   <Button key={i} onClick={() => handleClick(el.dictionaryName)} variant="contained" className={(el.dictionaryName === context.currentDictionary)?'primary-btn': 'dictionary-default'} >
                     {el.dictionaryName}

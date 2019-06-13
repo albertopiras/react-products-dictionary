@@ -128,7 +128,7 @@ class ColorDictionariesProvider extends Component {
                 setTimeout(() => {
                     let dictionary = this.state.dictionaries.find((dictionary: Dictionary) => dictionary.dictionaryName === dictionaryName) as Dictionary;
                     if (!dictionary) return reject(new Message('No dictionary found'));
-                    if (dictionary.mutations[from]) return reject(new Message('Item already present', true));
+                    if (dictionary.mutations[from] && itemkey !== from) return reject(new Message('Item already present', true));
                     delete dictionary.mutations[itemkey];
                     dictionary.mutations[from] = to;
                     this.setState({ dictionaries: this.state.dictionaries });

@@ -41,7 +41,7 @@ class ProductsProvider extends Component {
             setTimeout(() => {
                 console.log('data retrieved ', response);
                 this.setState({ productList: response.data.productList })
-            }, 2000);
+            }, 500);
         });
     }
 

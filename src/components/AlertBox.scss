@@ -1,0 +1,8 @@
+@import "../App.scss";
+
+.alert-box{
+    background: $error-color;
+    padding: 1rem;
+    color: #fff;
+    font-weight: bold;
+}
