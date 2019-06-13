@@ -24,8 +24,8 @@ class BaseDialog extends Component<IBaseDialogProps> {
     const { onClose, title, ...other } = this.props;
 
     return (
-      <Dialog onClose={this.handleClose} {...other}>
-        <DialogTitle className='modal-title'>{title}<span className="modal-btn-close" onClick={()=>{this.handleClose()}}><Icon>close</Icon></span></DialogTitle>
+      <Dialog maxWidth="sm" className="full-width" onClose={this.handleClose} {...other}>
+        <DialogTitle className='modal-title'>{title}<Icon className="modal-btn-close" onClick={()=>{this.handleClose()}}>close</Icon></DialogTitle>
         <DialogContent>
           {this.props.children}
         </DialogContent>

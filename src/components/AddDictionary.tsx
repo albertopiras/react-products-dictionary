@@ -24,7 +24,7 @@ class AddDictionary extends Component<IAddDictionaryParams, IComponentState> {
   }
 
   handleClickOpen = () => {
-    this.setState({ open: true });
+    this.setState({ newDictionaryName: '',open: true });
   }
 
   handleClose = () => {
@@ -57,6 +57,7 @@ class AddDictionary extends Component<IAddDictionaryParams, IComponentState> {
         <div className="row">
             <TextField
               autoFocus
+              className="full-width"
               label="Dictionary Name"
               value={this.state.newDictionaryName}
               onChange={this.handleOnChage}

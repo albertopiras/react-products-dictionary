@@ -25,7 +25,7 @@ class App extends PureComponent {
                   </ul>
                 </div>
               </nav>
-              <div className="container">
+              <div className="app-container">
                 <Route exact path="/" component={HomePage} />
                 <Route path="/dictionaries" component={DictionariesPage} />
               </div>

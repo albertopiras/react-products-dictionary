@@ -13,7 +13,7 @@ class DictionaryList extends Component {
           let results;
           if (context.getDictionaries().length > 0) {
             results = context.getDictionaries().map((el: any, i: number) =>
-              <div className="col s12 m4" key={i}>
+              <div className="col s12 m4 margin-md-bottom" key={i}>
                 <DictionaryTable dictionary={el} colors={context.getColorList()} onDeleteDictionary={context.deleteDictionary} onAddItem={context.addDictionaryItem} onUpdateItem={context.updateDictionaryItem} onRemoveItem={context.removeDictionaryItem}></DictionaryTable>
               </div>
             )

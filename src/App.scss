@@ -22,10 +22,14 @@ nav .brand-logo{
 .page-title{
     font-size: 2rem;
     text-align: center;
-    padding: 5rem 2rem;
+    padding: 3rem 2rem;
     font-family: 'Russo One', sans-serif;
 }
 
+.app-container{
+    width: 95%;
+    margin: auto;
+}
 
 @keyframes App-logo-spin {
     from {
@@ -54,6 +58,9 @@ button.MuiButton-root{
     border-radius: 0;
 }
 
+.full-width .MuiPaper-root {
+    width: 100%;
+}
 
 button.MuiButton-root:focus{
     background: #d5d5d5;
@@ -70,8 +77,6 @@ button.MuiButton-root:focus{
     background: $error-color;
 }
 
-
-
 .MuiButtonBase-root.primary-btn, .primary-btn, button.MuiButton-root.primary-btn:focus, button.MuiFab-primary:hover{
     background: $base-color;
     color: #ffffff;
@@ -86,6 +91,13 @@ button.MuiButton-root:focus{
     margin: 0 !important;
 }
 
+.margin-md-bottom{
+    margin-bottom: 2rem;
+}
+    
+.full-width{
+    width: 100%;
+}
 
 input[type=text]:not(.browser-default):focus:not([readonly]){
     border-bottom: none;

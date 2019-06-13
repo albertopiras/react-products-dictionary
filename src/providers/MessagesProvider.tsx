@@ -12,11 +12,14 @@ interface AppState {
     status: MESSAGE_TYPE;
 };
 
-export enum MESSAGE_TYPE {
+enum MESSAGE_TYPE {
     INFO,
     SUCCESS,
     ERROR
 }
+
+const TOAST_DURATION = 2000;
+
 export const MessagesContext = React.createContext({} as AppState);
 
 // Create an exportable consumer that can be injected into components
@@ -76,7 +79,7 @@ class MessagesProvider<Object, AppState> extends Component {
                     }}
                     className={this.getMessageColor(this.state.status)}
                     open={this.state.open}
-                    autoHideDuration={10000000}
+                    autoHideDuration={TOAST_DURATION}
                     onClose={this.handleClose}
                     ContentProps={{
                         'aria-describedby': 'message-id',
