@@ -3,16 +3,15 @@ import './ProductCard.scss';
 import { Product } from '../models/Models';
 import { ColorDictionariesConsumer } from 'providers/ColorDictionariesProvider';
 
-interface IProductCardParams {
+export interface IProductCardProps {
     product: Product;
 }
 
-class ProductCard extends Component<IProductCardParams> {
+class ProductCard extends Component<IProductCardProps> {
 
     render() {
 
-        const product = this.props.product;
-        console.log(product);
+        const {product} = this.props;
         return (
             <ColorDictionariesConsumer>
                 {(context) => {
