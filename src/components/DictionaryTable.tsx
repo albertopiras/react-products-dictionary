@@ -1,17 +1,19 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 // import './Dictionary.scss';
-import { Dictionary } from '../models/Models';
+import { Dictionary, Message } from '../models/Models';
 
 import MaterialTable, { Column } from 'material-table';
 import { MessagesContext } from 'providers/MessagesProvider';
+import './DictionaryTable.scss';
+import { Button, Icon } from '@material-ui/core';
 
 interface IDictionaryTableParams {
     dictionary: Dictionary;
     colors: any[];
-    onAddItem: (dictionaryName: string, from: string, to: string) => Promise<any>;
-    onUpdateItem: (dictionaryName: string, itemkey: string, from: string, to: string) => Promise<any>;
-    onRemoveItem: (dictionaryName: string, itemkey: string) => Promise<any>;
-
+    onAddItem: (dictionaryName: string, from: string, to: string) => Promise<Message>;
+    onUpdateItem: (dictionaryName: string, itemkey: string, from: string, to: string) => Promise<Message>;
+    onRemoveItem: (dictionaryName: string, itemkey: string) => Promise<Message>;
+    onDeleteDictionary: (dictionaryName: string) => Promise<Message>;
 }
 
 class DictionaryTable extends Component<IDictionaryTableParams> {
@@ -46,13 +48,24 @@ class DictionaryTable extends Component<IDictionaryTableParams> {
             this.context.newErrorMessage(error.content);
         });
     }
+
+    deleteDictionary() {
+        return this.props.onDeleteDictionary(this.props.dictionary.dictionaryName).then((response) => {
+            this.context.newSuccessMessage(response.content);
+        }, (error) => {
+            this.context.newErrorMessage(error.content);
+        });
+    }
     render() {
 
         return (
-            <Fragment>
+            <div className="dictionary-table">
                 <MaterialTable
                     title={this.props.dictionary.dictionaryName}
                     columns={this.columns}
+                    options={{
+                        actionsColumnIndex: -1
+                    }}
                     data={Object.keys(this.props.dictionary.mutations).map((item) => {
                         return {
                             from: item,
@@ -66,7 +79,13 @@ class DictionaryTable extends Component<IDictionaryTableParams> {
                             this.removeItem(this.props.dictionary.dictionaryName, oldData.from)
                     }}
                 />
-            </Fragment>
+                <div className="remove-dictionary">
+                    <Button variant="contained" size="small" onClick={()=>this.deleteDictionary()} className="warning-btn">
+                        <Icon>delete</Icon>
+                        Delete
+                    </Button>
+                </div>
+            </div>
         );
     }
 }

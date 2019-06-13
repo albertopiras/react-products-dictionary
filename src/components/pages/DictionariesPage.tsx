@@ -15,7 +15,7 @@ class DictionariesPage extends Component {
                 return (
                     <Fragment>
                         <div className="home-page-title">{this.state.pageTitle}</div>
-                        <DictionaryList dictionariesList={context.dictionaries}></DictionaryList>
+                        <DictionaryList></DictionaryList>
                         <AddDictionary onAddDictionary={context.createDictionary}></AddDictionary>
                     </Fragment>
                 )

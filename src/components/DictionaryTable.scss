@@ -1,0 +1,17 @@
+.remove-dictionary{
+    position: absolute;
+    left: 0rem;
+    bottom: 1rem;
+}
+
+.dictionary-table{
+    position: relative;
+}
+
+.dictionary-table>.remove-dictionary{
+    display: none;
+}
+
+.dictionary-table:hover>.remove-dictionary{
+    display: block;
+}

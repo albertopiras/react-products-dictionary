@@ -70,6 +70,11 @@ button.MuiButton-root:focus{
     color: #ffffff;
 }
 
+.MuiButtonBase-root.warning-btn, .warning-btn, button.MuiButton-root.warning-btn:focus, button.warning-btn.MuiButton-root:hover{
+    background: $error-color;
+    color: #ffffff;
+}
+
 .no-margin {
     margin: 0 !important;
 }

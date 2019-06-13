@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import { DialogContent, Icon } from '@material-ui/core';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import './BaseDialog.scss';
 
 interface IBaseDialogProps {
