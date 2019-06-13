@@ -59,7 +59,7 @@ const dictionaries = [
 export const ColorDictionariesContext = React.createContext({} as DictionaryState);
 
 // Create an exportable consumer that can be injected into components
-export const ColorDictionariesConsumer = ColorDictionariesContext.Consumer
+export const ColorDictionariesConsumer = ColorDictionariesContext.Consumer;
 
 // Create the provider using a traditional Component class
 class ColorDictionariesProvider extends Component {
@@ -86,7 +86,7 @@ class ColorDictionariesProvider extends Component {
             return new Promise((resolve,reject) => {
                     let dictionary = this.state.dictionaries.find((dictionary: Dictionary) => dictionary.dictionaryName === dictionaryName) as Dictionary;
                     if (dictionary){
-                        return reject('this dictionary already exists');
+                        return reject('This dictionary already exists');
                     } 
                     const newDictionary:Dictionary = {dictionaryName: dictionaryName, mutations:{}};
                     this.state.dictionaries.push(newDictionary);
@@ -99,11 +99,11 @@ class ColorDictionariesProvider extends Component {
             return new Promise((resolve,reject) => {
                 setTimeout(() => {
                     let dictionary = this.state.dictionaries.find((dictionary: Dictionary) => dictionary.dictionaryName === dictionaryName) as Dictionary;
-                    if (!dictionary) return reject(new Message('no dictionary found'));
-                    if (dictionary.mutations[from]) return reject(new Message('item already present', true));
+                    if (!dictionary) return reject(new Message('No dictionary found'));
+                    if (dictionary.mutations[from]) return reject(new Message('Item already present', true));
                     dictionary.mutations[from] = to;
                     this.setState({ dictionaries: this.state.dictionaries });
-                    resolve(new Message('item successfully added'));
+                    resolve(new Message('Item successfully added'));
                 }, 600);
             });
         },
@@ -112,11 +112,12 @@ class ColorDictionariesProvider extends Component {
             return new Promise((resolve,reject) => {
                 setTimeout(() => {
                     let dictionary = this.state.dictionaries.find((dictionary: Dictionary) => dictionary.dictionaryName === dictionaryName) as Dictionary;
-                    if (!dictionary) return reject(new Message('no dictionary found'));
+                    if (!dictionary) return reject(new Message('No dictionary found'));
+                    if (dictionary.mutations[from]) return reject(new Message('Item already present', true));
                     delete dictionary.mutations[itemkey];
                     dictionary.mutations[from] = to;
                     this.setState({ dictionaries: this.state.dictionaries });
-                    resolve(new Message('item successfully updted'));
+                    resolve(new Message('Item successfully updted'));
                 }, 600);
             })
 
@@ -126,10 +127,10 @@ class ColorDictionariesProvider extends Component {
             return new Promise((resolve,reject) => {
                 setTimeout(() => {
                     let dictionary = this.state.dictionaries.find((dictionary: Dictionary) => dictionary.dictionaryName === dictionaryName) as Dictionary;
-                    if (!dictionary) return reject(new Message('no dictionary found'));
+                    if (!dictionary) return reject(new Message('No dictionary found'));
                     delete dictionary.mutations[itemkey];
                     this.setState({ dictionaries: this.state.dictionaries });
-                    resolve(new Message('item successfully removed'));
+                    resolve(new Message('Item successfully removed'));
                 }, 600);
             })
 

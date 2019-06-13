@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
 // import './Dictionary.scss';
-import { Dictionary, Message } from '../models/Models';
+import { Dictionary } from '../models/Models';
 
 import MaterialTable, { Column } from 'material-table';
+import { MessagesContext } from 'providers/MessagesProvider';
 
 interface IDictionaryTableParams {
     dictionary: Dictionary;
@@ -14,6 +15,7 @@ interface IDictionaryTableParams {
 }
 
 class DictionaryTable extends Component<IDictionaryTableParams> {
+    static contextType = MessagesContext;
 
     columns = [
         { title: 'from', field: 'from', lookup: this.props.colors },
@@ -22,15 +24,27 @@ class DictionaryTable extends Component<IDictionaryTableParams> {
     ] as Column[];
 
     addDictionaryItem(dictionaryName: string, from: string, to: string) {
-        return this.props.onAddItem(dictionaryName, from, to);
+        return this.props.onAddItem(dictionaryName, from, to).then((response) => {
+            this.context.newSuccessMessage(response.content);
+        }, (error) => {
+            this.context.newErrorMessage(error.content);
+        });
     }
 
     updateItem(dictionaryName: string, itemKey: string, from: string, to: string) {
-        return this.props.onUpdateItem(dictionaryName, itemKey, from, to);
+        return this.props.onUpdateItem(dictionaryName, itemKey, from, to).then((response) => {
+            this.context.newSuccessMessage(response.content);
+        }, (error) => {
+            this.context.newErrorMessage(error.content);
+        });
     }
 
     removeItem(dictionaryName: string, itemKey: string) {
-        return this.props.onRemoveItem(dictionaryName, itemKey);
+        return this.props.onRemoveItem(dictionaryName, itemKey).then((response) => {
+            this.context.newSuccessMessage(response.content);
+        }, (error) => {
+            this.context.newErrorMessage(error.content);
+        });
     }
     render() {
 

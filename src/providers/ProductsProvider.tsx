@@ -17,7 +17,7 @@ const initialState: AppState = {
 export const ProductsContext = React.createContext(initialState);
 
 // Create an exportable consumer that can be injected into components
-export const ProductsConsumer = ProductsContext.Consumer
+export const ProductsConsumer = ProductsContext.Consumer;
 
 // Create the provider using a traditional Component class
 class ProductsProvider extends Component {

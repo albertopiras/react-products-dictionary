@@ -7,29 +7,32 @@ import HomePage from 'components/pages/HomePage';
 import ProductsProvider from 'providers/ProductsProvider';
 import DictionariesPage from 'components/pages/DictionariesPage';
 import ColorDictionariesProvider from './providers/ColorDictionariesProvider';
+import MessagesProvider from 'providers/MessagesProvider';
 class App extends PureComponent {
 
   render() {
     return (
-      <ColorDictionariesProvider>
-        <ProductsProvider>
-          <BrowserRouter>
-            <nav>
-              <div className="nav-wrapper">
-                <a href="#!" className="brand-logo center"><img src={logo} className="app-logo" alt="logo" /></a>
-                <ul className="left">
-                  <li><NavLink exact={true} activeClassName='active' to='/'>Home</NavLink></li>
-                  <li><NavLink exact={true} activeClassName='active' to='/dictionaries'>Dictionaries</NavLink></li>
-                </ul>
+      <MessagesProvider>
+        <ColorDictionariesProvider>
+          <ProductsProvider>
+            <BrowserRouter>
+              <nav>
+                <div className="nav-wrapper">
+                  <a href="#!" className="brand-logo center"><img src={logo} className="app-logo" alt="logo" /></a>
+                  <ul className="left">
+                    <li><NavLink exact={true} activeClassName='active' to='/'>Home</NavLink></li>
+                    <li><NavLink exact={true} activeClassName='active' to='/dictionaries'>Dictionaries</NavLink></li>
+                  </ul>
+                </div>
+              </nav>
+              <div className="container">
+                <Route exact path="/" component={HomePage} />
+                <Route path="/dictionaries" component={DictionariesPage} />
               </div>
-            </nav>
-            <div className ="container">
-              <Route exact path="/" component={HomePage} />
-              <Route path="/dictionaries" component={DictionariesPage} />
-            </div>
-          </BrowserRouter>
-        </ProductsProvider>
-      </ColorDictionariesProvider>
+            </BrowserRouter>
+          </ProductsProvider>
+        </ColorDictionariesProvider>
+      </MessagesProvider>
     );
   }
 }

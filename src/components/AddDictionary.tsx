@@ -38,10 +38,10 @@ class AddDictionary extends Component<IAddDictionaryParams, IComponentState> {
 
   handleOnSubmit = () => {
     this.props.onAddDictionary(this.state.newDictionaryName).then((response) => {
-      this.context.newMessage('dictionary added');
-    }, (err) => {
-      this.context.newMessage('error adding dicitionary');
-    })
+      this.context.newSuccessMessage(response.content);
+    }, (error) => {
+      this.context.newErrorMessage(error.content);
+    });
   }
   render() {
     return (

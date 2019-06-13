@@ -1,5 +1,9 @@
 $base-color: #2196F3;
 
+$success-color:#4CAF50;
+$error-color: #FF5722;
+$info-color: #9E9E9E;
+
 
 /* ----- nav and logo ----*/
 .app-logo {
@@ -51,7 +55,16 @@ button.MuiButton-root:focus{
     background: #d5d5d5;
 }
 
-
+// toast messages
+.message-info>.MuiSnackbarContent-root{
+        background: $info-color;
+}
+.message-success>.MuiSnackbarContent-root{
+    background: $success-color;
+}
+.message-error>.MuiSnackbarContent-root{
+    background: $error-color;
+}
 
 // other 
 
