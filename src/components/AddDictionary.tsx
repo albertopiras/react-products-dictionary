@@ -1,9 +1,9 @@
 import React, { Component, Fragment, FormEvent } from 'react';
 import { Fab, Icon, TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import BaseDialog from './dialog/BaseDialog';
 import './AddDictionary.scss';
 import { MessagesContext } from 'providers/MessagesProvider';
+import BaseDialog from './utilities/BaseDialog';
 
 interface IAddDictionaryParams {
   onAddDictionary: (newDictionaryName: string) => Promise<any>

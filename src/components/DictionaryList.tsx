@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DictionaryTable from './DictionaryTable';
 import { ColorDictionariesConsumer } from 'providers/ColorDictionariesProvider';
-import AlertBox from './AlertBox';
+import AlertBox from './utilities/AlertBox';
 
 class DictionaryList extends Component {
 
