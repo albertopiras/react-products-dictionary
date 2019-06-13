@@ -69,7 +69,6 @@ class MessagesProvider<Object, AppState> extends Component {
     render() {
         return (
             <MessagesContext.Provider value={this.state}>
-                <Button onClick={() => this.handleClick()}>Open simple snackbar</Button>
                 <Snackbar
                     anchorOrigin={{
                         vertical: 'bottom',

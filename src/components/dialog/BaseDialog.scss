@@ -1,0 +1,15 @@
+
+.modal-title{
+    text-transform: uppercase;
+    border-bottom: 1px solid #e4e4e4;
+    margin-bottom: 1rem;
+    position: relative;
+    background: #fafafa;
+}
+
+.modal-btn-close{
+    float: right;
+    &:hover{
+        cursor: pointer;
+    }
+}

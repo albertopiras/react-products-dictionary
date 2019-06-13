@@ -1,10 +1,11 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, FormEvent } from 'react';
 import { ColorDictionariesConsumer } from 'providers/ColorDictionariesProvider';
 import { Fab, Icon, TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import BaseDialog from './dialog/BaseDialog';
 import './AddDictionary.scss';
 import { MessagesContext } from 'providers/MessagesProvider';
+import { isDebuggerStatement } from '@babel/types';
 
 interface IAddDictionaryParams {
   onAddDictionary: (newDictionaryName: string) => Promise<any>
@@ -36,13 +37,16 @@ class AddDictionary extends Component<IAddDictionaryParams, IComponentState> {
     this.setState({ newDictionaryName: event.target.value });
   }
 
-  handleOnSubmit = () => {
+  handleOnSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     this.props.onAddDictionary(this.state.newDictionaryName).then((response) => {
       this.context.newSuccessMessage(response.content);
+      this.handleClose();
     }, (error) => {
       this.context.newErrorMessage(error.content);
     });
   }
+  
   render() {
     return (
       <Fragment>
@@ -50,8 +54,11 @@ class AddDictionary extends Component<IAddDictionaryParams, IComponentState> {
           <Icon>add_icon</Icon>
         </Fab>
         <BaseDialog title='add new dictionary' open={this.state.open} onClose={this.handleClose} >
-          <div className="row">
+          
+        <form onSubmit={(e) => this.handleOnSubmit(e)}>
+        <div className="row">
             <TextField
+              autoFocus
               label="Dictionary Name"
               value={this.state.newDictionaryName}
               onChange={this.handleOnChage}
@@ -60,8 +67,10 @@ class AddDictionary extends Component<IAddDictionaryParams, IComponentState> {
             />
           </div>
           <div className="row">
-            <Button variant="contained" onClick={() => this.handleOnSubmit()} className="primary-btn no-margin">Add</Button>
+            <Button variant="contained" disabled={!this.state.newDictionaryName} type="submit" className="primary-btn no-margin">Add</Button>
           </div>
+
+        </form>
         </BaseDialog>
       </Fragment>
     )

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import { DialogContent } from '@material-ui/core';
+import { DialogContent, Icon } from '@material-ui/core';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import './BaseDialog.scss';
 
 interface IBaseDialogProps {
   title: string;
@@ -24,7 +26,7 @@ class BaseDialog extends Component<IBaseDialogProps> {
 
     return (
       <Dialog onClose={this.handleClose} {...other}>
-        <DialogTitle className='modal-title'>{title}</DialogTitle>
+        <DialogTitle className='modal-title'>{title}<span className="modal-btn-close" onClick={()=>{this.handleClose()}}><Icon>close</Icon></span></DialogTitle>
         <DialogContent>
           {this.props.children}
         </DialogContent>

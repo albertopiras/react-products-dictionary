@@ -86,7 +86,7 @@ class ColorDictionariesProvider extends Component {
             return new Promise((resolve,reject) => {
                     let dictionary = this.state.dictionaries.find((dictionary: Dictionary) => dictionary.dictionaryName === dictionaryName) as Dictionary;
                     if (dictionary){
-                        return reject('This dictionary already exists');
+                        return reject(new Message('This dictionary already exists'));
                     } 
                     const newDictionary:Dictionary = {dictionaryName: dictionaryName, mutations:{}};
                     this.state.dictionaries.push(newDictionary);
