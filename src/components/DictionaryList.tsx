@@ -7,7 +7,6 @@ class DictionaryList extends Component {
 
   render() {
 
-
     return (
       <ColorDictionariesConsumer>
         {(context) => {
@@ -24,8 +23,6 @@ class DictionaryList extends Component {
           return (
             <div className="row">
               {results}
-
-
             </div>
           )
         }}

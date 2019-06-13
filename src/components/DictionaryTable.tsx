@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import './Dictionary.scss';
 import { Dictionary, Message } from '../models/Models';
 
 import MaterialTable, { Column } from 'material-table';

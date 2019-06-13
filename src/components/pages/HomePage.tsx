@@ -28,10 +28,7 @@ class HomePage extends Component<object,IHomeState> {
                 }}
             </ProductsConsumer>
         )
-
     }
-
 }
-
 
 export default HomePage;

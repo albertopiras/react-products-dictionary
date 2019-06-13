@@ -9,7 +9,6 @@ interface IProductCardParams {
 
 class ProductCard extends Component<IProductCardParams> {
 
-    // <Link to=”/”>Home</Link>
     render() {
 
         const product = this.props.product;
@@ -34,12 +33,6 @@ class ProductCard extends Component<IProductCardParams> {
                 }}
 
             </ColorDictionariesConsumer>
-            // <li className="collection-item avatar" key={i}>
-            //   <i className="material-icons circle green">insert_chart</i>
-            //     <span>{el.name}</span>
-            //     <span>{el.color}</span>
-            //   <a href="#!" onClick={() => this.props.onRemoveItem(el.id)} className="secondary-content"><i className="material-icons">delete</i></a>
-            // </li >
         );
     }
 }

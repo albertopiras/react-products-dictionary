@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
+import { Icon } from '@material-ui/core';
 
 interface AppState {
     open: boolean;
@@ -75,7 +76,7 @@ class MessagesProvider<Object, AppState> extends Component {
                     }}
                     className={this.getMessageColor(this.state.status)}
                     open={this.state.open}
-                    autoHideDuration={2000}
+                    autoHideDuration={10000000}
                     onClose={this.handleClose}
                     ContentProps={{
                         'aria-describedby': 'message-id',
@@ -88,7 +89,7 @@ class MessagesProvider<Object, AppState> extends Component {
                             color="inherit"
                             className="class_status"
                             onClick={this.handleClose}
-                        >X
+                        ><Icon>close</Icon>
                         </IconButton>,
                     ]}
                 />

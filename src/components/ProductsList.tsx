@@ -9,11 +9,12 @@ interface IProductsListParams {
 
 class ProductsList extends Component<IProductsListParams> {
 
-  // <Link to=”/”>Home</Link>
   render() {
+    const { productsList } = this.props;
+
     return (
         <div className="row">
-          {this.props.productsList.map((el, i) =>
+          {productsList.map((el, i) =>
             <div className="col s12 m4" key={i}>
               <ProductCard product={el}></ProductCard>
             </div>
