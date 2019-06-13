@@ -4,6 +4,7 @@ import { Fab, Icon, TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import BaseDialog from './dialog/BaseDialog';
 import './AddDictionary.scss';
+import { MessagesContext } from 'providers/MessagesProvider';
 
 interface IAddDictionaryParams {
   onAddDictionary: (newDictionaryName: string) => Promise<any>
@@ -14,7 +15,9 @@ interface IComponentState {
   newDictionaryName: string;
 }
 
-class AddDictionary extends React.Component<IAddDictionaryParams, IComponentState> {
+class AddDictionary extends Component<IAddDictionaryParams, IComponentState> {
+
+  static contextType = MessagesContext;
 
   state: IComponentState = {
     open: false,
@@ -33,43 +36,35 @@ class AddDictionary extends React.Component<IAddDictionaryParams, IComponentStat
     this.setState({ newDictionaryName: event.target.value });
   }
 
-  handleOnSubmit() {
-    this.props.onAddDictionary(this.state.newDictionaryName).then((response)=>{
-      console.log('on success');
-    }, (err)=>{
-      console.log('on error');
+  handleOnSubmit = () => {
+    this.props.onAddDictionary(this.state.newDictionaryName).then((response) => {
+      this.context.newMessage('dictionary added');
+    }, (err) => {
+      this.context.newMessage('error adding dicitionary');
     })
   }
   render() {
     return (
-      <ColorDictionariesConsumer>
-        {(context) => {
-          return (
-
-            <Fragment>
-              <Fab color="primary" className="plusButton primary-btn" onClick={this.handleClickOpen} aria-label="Add">
-                <Icon>add_icon</Icon>
-              </Fab>
-              <BaseDialog title='add new dictionary' open={this.state.open} onClose={this.handleClose} >
-                <div className="row">
-                  <TextField
-                    label="Dictionary Name"
-                    value={this.state.newDictionaryName}
-                    onChange={this.handleOnChage}
-                    margin="normal"
-                    variant="outlined"
-                  />
-                </div>
-                <div className="row">
-                  <Button variant="contained" onClick={()=>this.handleOnSubmit()} className="primary-btn no-margin">Add</Button>
-                </div>
-              </BaseDialog>
-            </Fragment>
-
-          )
-        }}
-      </ColorDictionariesConsumer>
-    );
+      <Fragment>
+        <Fab color="primary" className="plusButton primary-btn" onClick={this.handleClickOpen} aria-label="Add">
+          <Icon>add_icon</Icon>
+        </Fab>
+        <BaseDialog title='add new dictionary' open={this.state.open} onClose={this.handleClose} >
+          <div className="row">
+            <TextField
+              label="Dictionary Name"
+              value={this.state.newDictionaryName}
+              onChange={this.handleOnChage}
+              margin="normal"
+              variant="outlined"
+            />
+          </div>
+          <div className="row">
+            <Button variant="contained" onClick={() => this.handleOnSubmit()} className="primary-btn no-margin">Add</Button>
+          </div>
+        </BaseDialog>
+      </Fragment>
+    )
   }
 }
 export default AddDictionary;

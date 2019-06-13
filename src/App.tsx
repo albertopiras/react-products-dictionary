@@ -7,14 +7,10 @@ import HomePage from 'components/pages/HomePage';
 import ProductsProvider from 'providers/ProductsProvider';
 import DictionariesPage from 'components/pages/DictionariesPage';
 import ColorDictionariesProvider from './providers/ColorDictionariesProvider';
-// import { SnackbarProvider, VariantType, useSnackbar } from 'notistack';
-// const history = createBrowserHistory();
 class App extends PureComponent {
 
   render() {
-
     return (
-      // <SnackbarProvider maxSnack={3}>
       <ColorDictionariesProvider>
         <ProductsProvider>
           <BrowserRouter>
@@ -34,7 +30,6 @@ class App extends PureComponent {
           </BrowserRouter>
         </ProductsProvider>
       </ColorDictionariesProvider>
-      // </SnackbarProvider>
     );
   }
 }
