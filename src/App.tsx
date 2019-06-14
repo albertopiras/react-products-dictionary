@@ -20,8 +20,8 @@ class App extends PureComponent {
                 <div className="nav-wrapper">
                   <a href="#!" className="brand-logo center"><img src={logo} className="app-logo" alt="logo" /></a>
                   <ul className="left">
-                    <li><NavLink exact={true} activeClassName='active' to='/'>Home</NavLink></li>
-                    <li><NavLink exact={true} activeClassName='active' to='/dictionaries'>Dictionaries</NavLink></li>
+                    <li><NavLink exact={true} activeClassName='active' to='/react-products-dictionary/build/'>Home</NavLink></li>
+                    <li><NavLink exact={true} activeClassName='active' to='/react-products-dictionary/build/dictionaries'>Dictionaries</NavLink></li>
                   </ul>
                 </div>
               </nav>
