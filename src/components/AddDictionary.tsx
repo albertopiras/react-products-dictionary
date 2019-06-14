@@ -5,20 +5,20 @@ import './AddDictionary.scss';
 import { MessagesContext } from 'providers/MessagesProvider';
 import BaseDialog from './utilities/BaseDialog';
 
-export interface IAddDictionaryParams {
+export interface IAddDictionaryProps {
   onAddDictionary: (newDictionaryName: string) => Promise<any>
 }
 
-export  interface IComponentState {
+export  interface IAddDictionaryState {
   open: boolean;
   newDictionaryName: string;
 }
 
-class AddDictionary extends Component<IAddDictionaryParams, IComponentState> {
+class AddDictionary extends Component<IAddDictionaryProps, IAddDictionaryState> {
 
   static contextType = MessagesContext;
 
-  state: IComponentState = {
+  state: IAddDictionaryState = {
     open: false,
     newDictionaryName: ''
   }

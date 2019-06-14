@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './AlertBox.scss';
 
-interface IAlertBoxProps {
+export interface IAlertBoxProps {
   message: string;
 }
 class AlertBox extends Component<IAlertBoxProps>{

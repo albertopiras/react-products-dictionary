@@ -1,9 +1,9 @@
 import React, { FormEvent } from 'react';
 import { shallow,ShallowWrapper } from 'enzyme';
-import AddDictionary, { IAddDictionaryParams, IComponentState } from 'components/AddDictionary';
+import AddDictionary, { IAddDictionaryProps, IAddDictionaryState } from 'components/AddDictionary';
 import { Fab, TextField, Button } from '@material-ui/core';
 
-let component: ShallowWrapper<IAddDictionaryParams, IComponentState>;
+let component: ShallowWrapper<IAddDictionaryProps, IAddDictionaryState>;
 
 let instance: AddDictionary;
 
