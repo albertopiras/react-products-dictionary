@@ -1,21 +1,24 @@
-import React from 'react';
-import { ShallowWrapper } from 'enzyme';
-import { mount } from 'enzyme';
+import React, { FormEvent } from 'react';
+import { shallow,ShallowWrapper } from 'enzyme';
 import AddDictionary, { IAddDictionaryParams, IComponentState } from 'components/AddDictionary';
 import { Fab, TextField, Button } from '@material-ui/core';
 
 let component: ShallowWrapper<IAddDictionaryParams, IComponentState>;
 
+let instance: AddDictionary;
+
+const onAddDictionary= jest.fn().mockImplementation(() => new Promise(()=>{}));
 
 jest.mock('providers/ColorDictionariesProvider');
 
 describe('AddDictionary', () => {
 
   beforeEach(() => {
-    component = mount(<AddDictionary open='false' newDictionaryName='lillo' />);
+    component = shallow(<AddDictionary onAddDictionary={onAddDictionary} />);
 
     component.find(Fab).simulate('click');
 
+    instance = component.instance() as AddDictionary;
   });
 
   afterEach(() => {
@@ -48,12 +51,6 @@ describe('AddDictionary', () => {
 
   });
 
-
-  it('should contain a TextField containing the label sentence "Dictionary Name"', () => {
-
-    expect(component.find(TextField).text()).toContain('Dictionary Name');
-
-  });
 
   it('should containe a textField that must be updated after state change', () => {
 
