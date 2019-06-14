@@ -16,7 +16,6 @@ const dictionaries = [
 ]
 
 const colorProviderContext = {
-    onAddToCartClick: jest.fn(),
     getColorDescription: jest.fn(),
     getColorMutation: jest.fn(x => x),
     getColorList: [],
