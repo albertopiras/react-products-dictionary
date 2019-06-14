@@ -77,7 +77,7 @@ npm test
 
 MIT
 
-[view live demo]: <https://albertopiras.github.io/react-products-dictionary/>
+[view live demo]: <https://albertopiras.github.io/react-products-dictionary/build/>
 
 [material-ui.com]: <https://material-ui.com>
 [material-table]: <https://github.com/mbrn/material-table>
