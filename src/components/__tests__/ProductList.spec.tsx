@@ -23,9 +23,11 @@ let component: ShallowWrapper<IProductsListProps>;
 jest.mock('providers/ColorDictionariesProvider');
 
 describe('ProductList', () => {
+  
   beforeEach(() => {
     component = shallow<IProductsListProps>(<ProductsList productsList={mockList} />);
   });
+
   afterEach(() => {
     jest.resetAllMocks();
   });

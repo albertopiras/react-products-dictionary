@@ -1,3 +1,19 @@
+const dictionaries = [
+  {
+      dictionaryName: "Dictionary 1",
+      mutations: {
+          "#008000": "#00FF00",
+          "#008080": "#0000FF"
+      }
+  },
+  {
+      dictionaryName: "Dictionary 2",
+      mutations: {
+          "#800080": "#FF00FF",
+          "#008000": "#800000"
+      }
+  }
+]
 
 const colorProviderContext = {
     onAddToCartClick: jest.fn(),
@@ -5,7 +21,7 @@ const colorProviderContext = {
     getColorMutation: jest.fn(x => x),
     getColorList: [],
     currentDictionary: '',
-    getDictionaries:jest.fn(),
+    getDictionaries:jest.fn(()=>dictionaries),
     dictionaries: [],
     createDictionary: jest.fn(),
     deleteDictionary: jest.fn(),

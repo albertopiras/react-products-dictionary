@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ColorDictionariesConsumer } from '../providers/ColorDictionariesProvider';
+import { ColorDictionariesContext } from '../providers/ColorDictionariesProvider';
 import { Grid, Button } from '@material-ui/core';
 import './DictionarySelection.scss';
 
@@ -7,7 +7,7 @@ class DictionarySelection extends Component {
 
   render() {
     return (
-      <ColorDictionariesConsumer>
+      <ColorDictionariesContext.Consumer>
         {(context) => {
 
           function handleClick(newDictionary: string) {
@@ -23,7 +23,7 @@ class DictionarySelection extends Component {
             </Grid>
           )
         }}
-      </ColorDictionariesConsumer>
+      </ColorDictionariesContext.Consumer>
     );
   }
 }

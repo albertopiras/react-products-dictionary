@@ -4,6 +4,9 @@ This application allows you to create several dicionary colors mapping to apply 
 
 When you activate a dictionary, all the products rendering will be affected by the new mapping, showing a different colors.
 
+This application is responsive.
+
+
 [view live demo]
 
 ## Details
@@ -13,6 +16,7 @@ State: This app uses native React Context API to manage the state.
 Pages:
 * HomePage
 * Products Page
+
 
 Custom Components:
 * ProductCard

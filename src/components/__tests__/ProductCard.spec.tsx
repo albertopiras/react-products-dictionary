@@ -22,10 +22,15 @@ jest.mock('providers/ColorDictionariesProvider');
 describe('Product card', () => {
 
   beforeEach(() => {
+
     component = mount(<ProductCard product={mockProduct} />);
+
   });
+
   afterEach(() => {
+
     jest.resetAllMocks();
+    
   });
 
   it('should render correctly', () => {

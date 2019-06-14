@@ -5,11 +5,11 @@ import './AddDictionary.scss';
 import { MessagesContext } from 'providers/MessagesProvider';
 import BaseDialog from './utilities/BaseDialog';
 
-interface IAddDictionaryParams {
+export interface IAddDictionaryParams {
   onAddDictionary: (newDictionaryName: string) => Promise<any>
 }
 
-interface IComponentState {
+export  interface IComponentState {
   open: boolean;
   newDictionaryName: string;
 }
