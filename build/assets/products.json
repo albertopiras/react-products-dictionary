@@ -1,0 +1,25 @@
+{
+    "productList": [
+        {
+            "id": 101,
+            "name": "Apple iPhone 6s",
+            "brand": "apple",
+            "color": "#008000",
+            "price": 769
+        },
+        {
+            "id": 102,
+            "name": "Samsung Galaxy S8",
+            "brand": "samsung",
+            "color": "#008080",
+            "price": 569
+        },
+        {
+            "id": 103,
+            "name": "Huawei P9",
+            "brand": "huawei",
+            "color": "#800080",
+            "price": 272
+        }
+    ]
+}
