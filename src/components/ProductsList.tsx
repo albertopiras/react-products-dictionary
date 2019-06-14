@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import ProductCard from './ProductCard';
 import { Product } from 'models/Models';
 
-interface IProductsListParams {
+export interface IProductsListProps {
   productsList: Product[];
   // onRemoveItem: (id: number) => void
 }
 
-class ProductsList extends Component<IProductsListParams> {
+class ProductsList extends Component<IProductsListProps> {
 
   render() {
     const { productsList } = this.props;

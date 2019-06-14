@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './ProductCard.scss';
 import { Product } from '../models/Models';
-import { ColorDictionariesConsumer } from 'providers/ColorDictionariesProvider';
+import { ColorDictionariesContext } from 'providers/ColorDictionariesProvider';
 
 export interface IProductCardProps {
     product: Product;
@@ -13,7 +13,7 @@ class ProductCard extends Component<IProductCardProps> {
 
         const {product} = this.props;
         return (
-            <ColorDictionariesConsumer>
+            <ColorDictionariesContext.Consumer>
                 {(context) => {
                     const mutatedColorHex = context.getColorMutation(product.color);
 
@@ -24,14 +24,14 @@ class ProductCard extends Component<IProductCardProps> {
                                 <span className="card-title">{product.name}</span>
                             </div>
                             <div className="card-content" style={{ backgroundColor: mutatedColorHex }}>
-                                <div>{context.getColorDescription(mutatedColorHex)}</div>
-                                <div>CHF&nbsp;{product.price}</div>
+                                <div className="product-color-description">{context.getColorDescription(mutatedColorHex)}</div>
+                                <div className="product-price">CHF&nbsp;{product.price}</div>
                             </div>
                         </div>
                     )
                 }}
 
-            </ColorDictionariesConsumer>
+            </ColorDictionariesContext.Consumer>
         );
     }
 }
