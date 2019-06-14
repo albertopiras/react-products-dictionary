@@ -2,7 +2,7 @@
   "name": "react-product-library",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./",
+  "homepage": "./react-products-dictionary/build/",
   "dependencies": {
     "@material-ui/core": "^4.0.1",
     "axios": "^0.18.0",
