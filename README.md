@@ -31,7 +31,8 @@ Providers:
  * ProductsProvider (products management)
 
 
-All the insertions/updates and removals are asyncronous Promises to simulate a Backend Interaction.
+The JSON product list is retrieved from the server with a GET api call. 
+All the dictionary's insertions/updates and removals are asyncronous Promises to simulate a Backend Interaction.
 All these Promises return a `Message` object with the following properties:
 
 ```

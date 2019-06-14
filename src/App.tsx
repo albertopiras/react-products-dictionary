@@ -18,7 +18,7 @@ class App extends PureComponent {
             <BrowserRouter>
               <nav>
                 <div className="nav-wrapper">
-                  <a href="#!" className="brand-logo center"><img src={logo} className="app-logo" alt="logo" /></a>
+                  <a href="https://github.com/albertopiras" className="brand-logo center"><img src={logo} className="app-logo" alt="logo" /></a>
                   <ul className="left">
                     <li><NavLink exact={true} activeClassName='active' to='/'>Home</NavLink></li>
                     <li><NavLink exact={true} activeClassName='active' to='/dictionaries'>Dictionaries</NavLink></li>

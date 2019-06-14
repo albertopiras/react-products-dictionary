@@ -4,7 +4,6 @@ import { Product } from 'models/Models';
 
 export interface IProductsListProps {
   productsList: Product[];
-  // onRemoveItem: (id: number) => void
 }
 
 class ProductsList extends Component<IProductsListProps> {
