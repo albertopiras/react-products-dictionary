@@ -64,9 +64,6 @@ export const ColorDictionariesConsumer = ColorDictionariesContext.Consumer;
 // Create the provider using a traditional Component class
 class ColorDictionariesProvider extends Component {
 
-    findDictionary(dictionaryName: string): Dictionary | undefined {
-        return this.state.dictionaries.find((dictionary: Dictionary) => dictionary.dictionaryName === dictionaryName);
-    }
     state = {
         currentDictionary: null,
         dictionaries: dictionaries,
@@ -80,18 +77,17 @@ class ColorDictionariesProvider extends Component {
         },
         activateDictionary: (newDictionary: string) => {
             console.info("context - activating dictionary");
-            this.setState({ currentDictionary: this.state.currentDictionary !== newDictionary ? newDictionary : null })
+            this.setState((prevState: DictionaryState) => ({currentDictionary:(prevState.currentDictionary !== newDictionary) ? newDictionary : null }));
         },
         createDictionary: (dictionaryName: string) => {
             console.info("context - creating dictionary");
             return new Promise((resolve, reject) => {
-                let dictionary = this.state.dictionaries.find((dictionary: Dictionary) => dictionary.dictionaryName === dictionaryName) as Dictionary;
+                let dictionary = this.findDictionary(dictionaryName);
                 if (dictionary) {
                     return reject(new Message('This dictionary already exists'));
                 }
                 const newDictionary: Dictionary = { dictionaryName: dictionaryName, mutations: {} };
-                this.state.dictionaries.push(newDictionary);
-                this.setState({ dictionaries: this.state.dictionaries });
+                this.setState((prevState: DictionaryState) => { prevState.dictionaries.push(newDictionary); return { dictionaries: prevState.dictionaries } });
                 resolve(new Message('Dictionary successfully added'));
             });
         },
@@ -102,8 +98,7 @@ class ColorDictionariesProvider extends Component {
                 if (index === undefined) {
                     return reject(new Message('Dictionary does not exist'));
                 }
-                this.state.dictionaries.splice(index,1);
-                this.setState({ dictionaries: this.state.dictionaries });
+                this.setState((prevState: DictionaryState) => { prevState.dictionaries.splice(index, 1); return { dictionaries: prevState.dictionaries } });
                 resolve(new Message('Dictionary successfully removed'));
             });
         },
@@ -112,7 +107,7 @@ class ColorDictionariesProvider extends Component {
             console.info('context - adding dictionary mutation ...');
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
-                    let dictionary = this.state.dictionaries.find((dictionary: Dictionary) => dictionary.dictionaryName === dictionaryName) as Dictionary;
+                    let dictionary = this.findDictionary(dictionaryName);
                     if (!dictionary) return reject(new Message('No dictionary found'));
                     if (dictionary.mutations[from]) return reject(new Message('Item already present', true));
                     if (from === to) return reject(new Message('Colors shall be different', true));
@@ -126,7 +121,7 @@ class ColorDictionariesProvider extends Component {
             console.info('context - updating dictionary mutation ...');
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
-                    let dictionary = this.state.dictionaries.find((dictionary: Dictionary) => dictionary.dictionaryName === dictionaryName) as Dictionary;
+                    let dictionary = this.findDictionary(dictionaryName);
                     if (!dictionary) return reject(new Message('No dictionary found'));
                     if (dictionary.mutations[from] && itemkey !== from) return reject(new Message('Item already present', true));
                     if (from === to) return reject(new Message('Colors shall be different', true));
@@ -142,7 +137,7 @@ class ColorDictionariesProvider extends Component {
             console.info('context - removing dictionary item ...');
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
-                    let dictionary = this.state.dictionaries.find((dictionary: Dictionary) => dictionary.dictionaryName === dictionaryName) as Dictionary;
+                    let dictionary = this.findDictionary(dictionaryName);
                     if (!dictionary) return reject(new Message('No dictionary found'));
                     delete dictionary.mutations[itemkey];
                     this.setState({ dictionaries: this.state.dictionaries });
@@ -166,6 +161,10 @@ class ColorDictionariesProvider extends Component {
         if (!this.state.currentDictionary) return null;
         return this.state.getDictionaries().find((dictionary: Dictionary) => dictionary.dictionaryName === this.state.currentDictionary);
     };
+
+    private findDictionary(dictionaryName: string): Dictionary | undefined {
+        return this.state.dictionaries.find((dictionary: Dictionary) => dictionary.dictionaryName === dictionaryName) as Dictionary;
+    }
 
     render() {
         return (

@@ -1,4 +1,4 @@
-export interface Product{
+export interface Product {
     id: number,
     name: string,
     brand: string,
@@ -11,13 +11,10 @@ export interface Dictionary {
     mutations: any
 }
 
-export interface Message{
-    content:string;
-    error?:boolean;
-}
-
-export class Message implements Message{
-    constructor(newMessage:string, error?:boolean){
+export class Message {
+    content: string;
+    error?: boolean;
+    constructor(newMessage: string, error?: boolean) {
         this.content = newMessage;
         this.error = error;
     }

@@ -3,9 +3,10 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import { Icon } from '@material-ui/core';
 
-interface AppState {
+interface MessagesState {
     open: boolean;
     message: string,
+    //Methods exposes by MessagesProvider to allow to call them through the consumer.
     newInfoMessage(messageToShow: string): void;
     newSuccessMessage(messageToShow: string): void;
     newErrorMessage(messageToShow: string): void;
@@ -20,7 +21,7 @@ enum MESSAGE_TYPE {
 
 const TOAST_DURATION = 2000;
 
-export const MessagesContext = React.createContext({} as AppState);
+export const MessagesContext = React.createContext({} as MessagesState);
 
 // Create an exportable consumer that can be injected into components
 export const MessagesConsumer = MessagesContext.Consumer;
@@ -28,7 +29,7 @@ export const MessagesConsumer = MessagesContext.Consumer;
 /***
  * MessagesProvider allows to show Snackbar messages.
  */
-class MessagesProvider<Object, AppState> extends Component {
+class MessagesProvider<Object, MessagesState> extends Component {
 
     state = {
         open: false,
