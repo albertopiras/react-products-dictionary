@@ -8,7 +8,7 @@ import { Button, Icon } from '@material-ui/core';
 
 interface IDictionaryTableParams {
     dictionary: Dictionary;
-    colors: {[S:string]:string};
+    colors: { [S: string]: string };
     onAddItem: (dictionaryName: string, from: string, to: string) => Promise<Message>;
     onUpdateItem: (dictionaryName: string, itemkey: string, from: string, to: string) => Promise<Message>;
     onRemoveItem: (dictionaryName: string, itemkey: string) => Promise<Message>;
@@ -24,7 +24,7 @@ class DictionaryTable extends Component<IDictionaryTableParams> {
 
     ] as Column[];
 
-    addDictionaryItem(dictionaryName: string, from: string, to: string) {
+    addDictionaryItem = (dictionaryName: string, from: string, to: string) => {
         return this.props.onAddItem(dictionaryName, from, to).then((response) => {
             this.context.newSuccessMessage(response.content);
         }, (error) => {
@@ -32,7 +32,7 @@ class DictionaryTable extends Component<IDictionaryTableParams> {
         });
     }
 
-    updateItem(dictionaryName: string, itemKey: string, from: string, to: string) {
+    updateItem = (dictionaryName: string, itemKey: string, from: string, to: string) => {
         return this.props.onUpdateItem(dictionaryName, itemKey, from, to).then((response) => {
             this.context.newSuccessMessage(response.content);
         }, (error) => {
@@ -40,7 +40,7 @@ class DictionaryTable extends Component<IDictionaryTableParams> {
         });
     }
 
-    removeItem(dictionaryName: string, itemKey: string) {
+    removeItem = (dictionaryName: string, itemKey: string) => {
         return this.props.onRemoveItem(dictionaryName, itemKey).then((response) => {
             this.context.newSuccessMessage(response.content);
         }, (error) => {
@@ -48,7 +48,7 @@ class DictionaryTable extends Component<IDictionaryTableParams> {
         });
     }
 
-    deleteDictionary() {
+    deleteDictionary = () => {
         return this.props.onDeleteDictionary(this.props.dictionary.dictionaryName).then((response) => {
             this.context.newSuccessMessage(response.content);
         }, (error) => {
@@ -79,7 +79,7 @@ class DictionaryTable extends Component<IDictionaryTableParams> {
                     }}
                 />
                 <div className="remove-dictionary">
-                    <Button variant="contained" size="small" onClick={()=>this.deleteDictionary()} className="warning-btn">
+                    <Button variant="contained" size="small" onClick={this.deleteDictionary} className="warning-btn">
                         <Icon>delete</Icon>
                         Delete
                     </Button>
