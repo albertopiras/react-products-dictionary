@@ -20,7 +20,7 @@ class ProductCard extends Component<IProductCardProps> {
                     return (
                         <div className="card">
                             <div className="card-image">
-                                <img src="assets/img/iphone.jpg" alt="smartphone"/>
+                                <img src="./assets/img/iphone.jpg" alt="smartphone"/>
                                 <span className="card-title">{product.name}</span>
                             </div>
                             <div className="card-content" style={{ backgroundColor: mutatedColorHex }}>
