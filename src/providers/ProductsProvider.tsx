@@ -2,19 +2,13 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { Product } from '../models/Models';
 
-interface AppState {
+interface IProductsState {
     productList: Product[],
     getProduct(id: number): Product | null;
-    removeProduct(id:number):void;
+    removeProduct(id: number): void;
 };
 
-const initialState: AppState = {
-    productList: [] as Product[],
-    getProduct: (id: number) => null,
-    removeProduct: (id:number) => {}
-};
-
-export const ProductsContext = React.createContext(initialState);
+export const ProductsContext = React.createContext({} as IProductsState);
 
 // Create an exportable consumer that can be injected into components
 export const ProductsConsumer = ProductsContext.Consumer;
@@ -23,17 +17,17 @@ export const ProductsConsumer = ProductsContext.Consumer;
 class ProductsProvider extends Component {
 
     state = {
-        productList: initialState.productList,
+        productList: [] as Product[],
         getProduct: (id: number) => {
             console.log('context get product');
             const product = this.state.productList.find((product: Product) => product.id === id);
             return product ? product : null;
         },
-       removeProduct: (id: number) => {
+        removeProduct: (id: number) => {
             console.log('context remove product');
-            this.setState({productList: this.state.productList.filter((product:Product)=>product.id !== id)});
+            this.setState((prevState: IProductsState) => ({ productList: prevState.productList.filter((product: Product) => product.id !== id) }));
         }
-    } as AppState;
+    } as IProductsState;
 
     /**retrieves data from server */
     componentWillMount() {

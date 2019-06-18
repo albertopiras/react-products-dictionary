@@ -8,7 +8,7 @@ import { Button, Icon } from '@material-ui/core';
 
 interface IDictionaryTableParams {
     dictionary: Dictionary;
-    colors: any[];
+    colors: {[S:string]:string};
     onAddItem: (dictionaryName: string, from: string, to: string) => Promise<Message>;
     onUpdateItem: (dictionaryName: string, itemkey: string, from: string, to: string) => Promise<Message>;
     onRemoveItem: (dictionaryName: string, itemkey: string) => Promise<Message>;

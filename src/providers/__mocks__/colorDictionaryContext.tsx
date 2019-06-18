@@ -18,7 +18,7 @@ const dictionaries = [
 const colorProviderContext = {
     getColorDescription: jest.fn(),
     getColorMutation: jest.fn(x => x),
-    getColorList: [],
+    getColorList: {} as { [s: string]: string },
     currentDictionary: '',
     getDictionaries:jest.fn(()=>dictionaries),
     dictionaries: [],

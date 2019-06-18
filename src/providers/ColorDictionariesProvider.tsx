@@ -5,7 +5,7 @@ interface DictionaryState {
     // colors
     getColorDescription(hex: string): string | null;
     getColorMutation(hex: string): string;
-    getColorList: any;
+    getColorList: () => { [s: string]: string };
     // dictionaries
     currentDictionary: string | null;
     getDictionaries: any;
@@ -72,12 +72,12 @@ class ColorDictionariesProvider extends Component {
             const color = (colors as any)[hex];
             return color ? color : null;
         },
-        getColorList: () => {
+        getColorList: (): { [s: string]: string } => {
             return colors;
         },
         activateDictionary: (newDictionary: string) => {
             console.info("context - activating dictionary");
-            this.setState((prevState: DictionaryState) => ({currentDictionary:(prevState.currentDictionary !== newDictionary) ? newDictionary : null }));
+            this.setState((prevState: DictionaryState) => ({ currentDictionary: (prevState.currentDictionary !== newDictionary) ? newDictionary : null }));
         },
         createDictionary: (dictionaryName: string) => {
             console.info("context - creating dictionary");

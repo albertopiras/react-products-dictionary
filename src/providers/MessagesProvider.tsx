@@ -3,7 +3,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import { Icon } from '@material-ui/core';
 
-interface MessagesState {
+interface IMessagesState {
     open: boolean;
     message: string,
     //Methods exposes by MessagesProvider to allow to call them through the consumer.
@@ -21,7 +21,7 @@ enum MESSAGE_TYPE {
 
 const TOAST_DURATION = 2000;
 
-export const MessagesContext = React.createContext({} as MessagesState);
+export const MessagesContext = React.createContext({} as IMessagesState);
 
 // Create an exportable consumer that can be injected into components
 export const MessagesConsumer = MessagesContext.Consumer;
@@ -29,24 +29,24 @@ export const MessagesConsumer = MessagesContext.Consumer;
 /***
  * MessagesProvider allows to show Snackbar messages.
  */
-class MessagesProvider<Object, MessagesState> extends Component {
+class MessagesProvider<Object, IMessagesState> extends Component {
 
     state = {
         open: false,
         message: 'default',
         newInfoMessage: (messageToShow: string) => {
-            this.setState({ open: true, message: messageToShow });
+            this.setState((prevState: IMessagesState) => ({ open: true, message: messageToShow }));
         },
         newSuccessMessage: (messageToShow: string) => {
-            this.setState({ open: true, message: messageToShow, status: MESSAGE_TYPE.SUCCESS });
+            this.setState((prevState: IMessagesState) => ({ open: true, message: messageToShow, status: MESSAGE_TYPE.SUCCESS }));
         },
         newErrorMessage: (messageToShow: string) => {
-            this.setState({ open: true, message: messageToShow, status: MESSAGE_TYPE.ERROR });
+            this.setState((prevState: IMessagesState) => ({ open: true, message: messageToShow, status: MESSAGE_TYPE.ERROR }));
         },
         status: MESSAGE_TYPE.INFO
     };
 
-    getMessageColor(status: MESSAGE_TYPE):string {
+    getMessageColor(status: MESSAGE_TYPE): string {
         switch (status) {
             case MESSAGE_TYPE.INFO:
                 return 'message-info';
@@ -67,7 +67,7 @@ class MessagesProvider<Object, MessagesState> extends Component {
         if (reason === 'clickaway') {
             return;
         }
-        this.setState({ open: false });
+        this.setState((prevState: IMessagesState) => ({ open: false }));
     }
 
     render() {
