@@ -44,6 +44,12 @@ All these Promises return a `Message` object with the following properties:
 
 This application exposes a custom Provider called `MessagesProvider` to manage 3 kinds of toast Notification in the entire app.
 Toast Notification can be of three types : `INFO, SUCCESS,ERROR`.
+## Deploy
+
+update Routing:
+
+<BrowserRouter basename="/react-products-dictionary/build">
+
 
 ## Usage
 
